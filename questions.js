@@ -1,112 +1,14 @@
-const questionPool = [
-{question:"Which best defines leadership?",options:["Authority","Influence","Control","Power"],answer:1},
-{question:"Self-assessment helps leaders:",options:["Judge others","Identify strengths","Ignore feedback","Avoid growth"],answer:1},
-{question:"Resiliency means:",options:["Giving up","Recovering quickly","Avoiding stress","Delegating tasks"],answer:1},
-{question:"Initiative is:",options:["Waiting","Acting without being told","Delegating","Avoiding"],answer:1},
-{question:"Positive attitude leads to:",options:["Low morale","High motivation","Confusion","Conflict"],answer:1},
-{question:"LMX theory focuses on:",options:["Tasks","Relationships","Rules","Deadlines"],answer:1},
-{question:"In-group members have:",options:["Less trust","More trust","No role","No interaction"],answer:1},
-{question:"Out-group members have:",options:["More trust","Less trust","Leadership roles","High authority"],answer:1},
-{question:"Effective communication requires:",options:["Clarity","Silence","Control","Authority"],answer:0},
-{question:"Feedback is:",options:["Optional","Critical","Unnecessary","Avoidable"],answer:1},
-
-{question:"Nonverbal communication includes:",options:["Emails","Body language","Reports","Data"],answer:1},
-{question:"Active listening means:",options:["Interrupting","Paying attention","Ignoring","Talking"],answer:1},
-{question:"Conflict should be:",options:["Ignored","Managed","Escalated","Avoided"],answer:1},
-{question:"Delegation helps:",options:["Leader only","Team growth","Confusion","Delay"],answer:1},
-{question:"Time management improves:",options:["Stress","Productivity","Confusion","Errors"],answer:1},
-{question:"Follow-through means:",options:["Starting","Finishing","Delegating","Avoiding"],answer:1},
-{question:"Ethical leadership includes:",options:["Cheating","Integrity","Bias","Ignoring rules"],answer:1},
-{question:"Decision-making involves:",options:["Guessing","Analyzing","Ignoring","Avoiding"],answer:1},
-{question:"Team cohesion means:",options:["Division","Unity","Conflict","Separation"],answer:1},
-{question:"Motivation comes from:",options:["Fear","Understanding needs","Punishment","Silence"],answer:1},
-
-{question:"A leader as figurehead:",options:["Represents org","Monitors","Decides","Plans"],answer:0},
-{question:"A leader as disseminator:",options:["Shares info","Controls","Ignores","Plans"],answer:0},
-{question:"Entrepreneur role means:",options:["Maintaining","Innovating","Ignoring","Avoiding"],answer:1},
-{question:"Negotiator role involves:",options:["Arguing","Reaching agreements","Avoiding","Ignoring"],answer:1},
-{question:"Communication barrier example:",options:["Clarity","Noise","Feedback","Listening"],answer:1},
-{question:"Sender does:",options:["Receives","Encodes message","Ignores","Avoids"],answer:1},
-{question:"Receiver does:",options:["Encodes","Decodes","Ignores","Creates"],answer:1},
-{question:"Feedback ensures:",options:["Understanding","Confusion","Delay","Error"],answer:0},
-{question:"Trust builds:",options:["Conflict","Performance","Confusion","Stress"],answer:1},
-{question:"Confidence shows:",options:["Doubt","Decisiveness","Fear","Avoidance"],answer:1},
-
-{question:"Ethical decisions consider:",options:["Gain","Fairness","Speed","Power"],answer:1},
-{question:"Leadership requires:",options:["Control","Influence","Money","Power"],answer:1},
-{question:"Listening skills improve:",options:["Misunderstanding","Communication","Conflict","Silence"],answer:1},
-{question:"Resilient leaders:",options:["Quit","Adapt","Avoid","Ignore"],answer:1},
-{question:"Initiative improves:",options:["Delay","Progress","Conflict","Errors"],answer:1},
-{question:"Delegation requires:",options:["Trust","Fear","Control","Silence"],answer:0},
-{question:"Motivation increases:",options:["Productivity","Conflict","Errors","Delay"],answer:0},
-{question:"Team building focuses on:",options:["Trust","Control","Authority","Rules"],answer:0},
-{question:"Communication includes:",options:["Sender","Receiver","Message","All"],answer:3},
-{question:"Positive reinforcement:",options:["Punish","Reward","Ignore","Avoid"],answer:1},
-
-{question:"Time management reduces:",options:["Productivity","Stress","Focus","Clarity"],answer:1},
-{question:"Decision-making needs:",options:["Data","Guessing","Avoidance","Silence"],answer:0},
-{question:"Conflict resolution requires:",options:["Listening","Ignoring","Escalating","Avoiding"],answer:0},
-{question:"LMX improves:",options:["Trust","Conflict","Confusion","Delay"],answer:0},
-{question:"Ethics affect:",options:["Culture","Nothing","Salary","Time"],answer:0},
-{question:"Follow-through builds:",options:["Trust","Conflict","Delay","Errors"],answer:0},
-{question:"Leadership includes:",options:["Guiding","Ignoring","Avoiding","Controlling"],answer:0},
-{question:"Motivation is driven by:",options:["Needs","Fear","Silence","Avoidance"],answer:0},
-{question:"Communication must be:",options:["Clear","Confusing","Long","Silent"],answer:0},
-{question:"Team success requires:",options:["Trust","Conflict","Silence","Control"],answer:0},
-
-{question:"Effective leaders are:",options:["Rigid","Flexible","Silent","Avoidant"],answer:1},
-{question:"Feedback should be:",options:["Vague","Clear","Delayed","Ignored"],answer:1},
-{question:"Ethics include:",options:["Honesty","Cheating","Bias","Ignoring"],answer:0},
-{question:"Confidence builds:",options:["Trust","Fear","Conflict","Errors"],answer:0},
-{question:"Decision-making avoids:",options:["Analysis","Guessing","Evaluation","Data"],answer:1},
-{question:"Active listening avoids:",options:["Interrupting","Understanding","Clarity","Focus"],answer:0},
-{question:"LMX out-group:",options:["Less trust","More trust","Leads","Controls"],answer:0},
-{question:"Motivation improves:",options:["Performance","Errors","Delay","Conflict"],answer:0},
-{question:"Resiliency avoids:",options:["Recovery","Failure","Adaptation","Growth"],answer:1},
-{question:"Delegation builds:",options:["Skills","Confusion","Delay","Conflict"],answer:0},
-
-{question:"Communication barriers include:",options:["Noise","Clarity","Feedback","Listening"],answer:0},
-{question:"Leader-member relations impact:",options:["Performance","Nothing","Salary","Time"],answer:0},
-{question:"Ethical leaders are:",options:["Fair","Biased","Unfair","Corrupt"],answer:0},
-{question:"Time management needs:",options:["Planning","Guessing","Avoiding","Ignoring"],answer:0},
-{question:"Team cohesion reduces:",options:["Conflict","Trust","Performance","Unity"],answer:0},
-{question:"Decision-making improves:",options:["Results","Errors","Confusion","Delay"],answer:0},
-{question:"Leadership requires:",options:["Responsibility","Avoidance","Silence","Control"],answer:0},
-{question:"Motivation requires:",options:["Understanding","Ignoring","Avoiding","Punishing"],answer:0},
-{question:"Feedback improves:",options:["Performance","Errors","Delay","Conflict"],answer:0},
-{question:"Follow-through avoids:",options:["Incomplete work","Success","Trust","Clarity"],answer:0},
-
-{question:"Nonverbal includes:",options:["Tone","Email","Reports","Data"],answer:0},
-{question:"Listening prevents:",options:["Misunderstanding","Clarity","Focus","Understanding"],answer:0},
-{question:"LMX improves:",options:["Relationships","Conflict","Delay","Errors"],answer:0},
-{question:"Ethics guide:",options:["Decisions","Errors","Conflict","Delay"],answer:0},
-{question:"Delegation requires:",options:["Trust","Fear","Avoidance","Control"],answer:0},
-{question:"Motivation reduces:",options:["Apathy","Engagement","Effort","Focus"],answer:0},
-{question:"Team building increases:",options:["Trust","Conflict","Errors","Delay"],answer:0},
-{question:"Leadership improves:",options:["Performance","Errors","Delay","Conflict"],answer:0},
-{question:"Decision-making requires:",options:["Evaluation","Guessing","Avoidance","Silence"],answer:0},
-{question:"Time management avoids:",options:["Missed deadlines","Productivity","Focus","Clarity"],answer:0}
+// MUST be EXACT — no missing commas, no edits
 
 const questionPool = [
-
-/* ===== EASY ===== */
 {question:"Leadership is best defined as:",options:["Control","Influence","Power","Authority"],answer:1,difficulty:"easy"},
-{question:"Self-assessment helps leaders:",options:["Judge others","Improve themselves","Ignore feedback","Avoid growth"],answer:1,difficulty:"easy"},
 {question:"Positive attitude leads to:",options:["Conflict","Motivation","Confusion","Stress"],answer:1,difficulty:"easy"},
 {question:"Delegation means:",options:["Doing everything","Assigning tasks","Ignoring work","Avoiding"],answer:1,difficulty:"easy"},
-{question:"Communication requires:",options:["Clarity","Silence","Control","Authority"],answer:0,difficulty:"easy"},
 
-/* ===== MEDIUM ===== */
 {question:"LMX theory focuses on:",options:["Rules","Relationships","Tasks","Deadlines"],answer:1,difficulty:"medium"},
-{question:"In-group members typically:",options:["Have trust","Ignored","Low performance","No role"],answer:0,difficulty:"medium"},
 {question:"Conflict should be:",options:["Ignored","Managed","Escalated","Avoided"],answer:1,difficulty:"medium"},
-{question:"Feedback should be:",options:["Vague","Clear","Delayed","Ignored"],answer:1,difficulty:"medium"},
-{question:"Nonverbal communication includes:",options:["Emails","Body language","Reports","Data"],answer:1,difficulty:"medium"},
 
-/* ===== HARD ===== */
-{question:"Leader-member exchange improves:",options:["Trust","Conflict","Confusion","Delay"],answer:0,difficulty:"hard"},
 {question:"Ethical leadership emphasizes:",options:["Profit","Fairness","Speed","Power"],answer:1,difficulty:"hard"},
-{question:"Decision-making requires:",options:["Guessing","Analysis","Avoidance","Silence"],answer:1,difficulty:"hard"},
-{question:"Resiliency allows leaders to:",options:["Quit","Adapt","Avoid","Ignore"],answer:1,difficulty:"hard"},
-{question:"Motivation is driven by:",options:["Fear","Needs","Control","Silence"],answer:1,difficulty:"hard"}
+{question:"Decision-making requires:",options:["Guessing","Analysis","Avoidance","Silence"],answer:1,difficulty:"hard"}
+];
 
