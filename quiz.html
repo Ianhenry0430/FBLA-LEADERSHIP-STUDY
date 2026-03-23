@@ -1,29 +1,25 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Quiz</title>
+  <title>FBLA Quiz</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header><h1>FBLA Quiz</h1></header>
+  <main>
+    <div id="quiz-container">
+      <p id="question"></p>
+      <div id="options"></div>
+      <p id="result"></p>
+      <button id="nextBtn" onclick="nextQuestion()" style="display:none;">Next Question</button>
+      <p id="score"></p>
+    </div>
+  </main>
 
-<h2>Practice Quiz</h2>
-
-<p>What does LMX stand for?</p>
-
-<button onclick="checkAnswer('a')">Leader Member Exchange</button>
-<button onclick="checkAnswer('b')">Leadership Management Example</button>
-
-<p id="result"></p>
-
-<script>
-function checkAnswer(answer) {
-  if(answer === 'a') {
-    document.getElementById("result").innerText = "Correct!";
-  } else {
-    document.getElementById("result").innerText = "Try again!";
-  }
-}
-</script>
-
+  <script src="script-quiz.js"></script>
 </body>
 </html>
+
+
 
