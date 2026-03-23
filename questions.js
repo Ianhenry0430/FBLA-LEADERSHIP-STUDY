@@ -86,4 +86,27 @@ const questionPool = [
 {question:"Leadership improves:",options:["Performance","Errors","Delay","Conflict"],answer:0},
 {question:"Decision-making requires:",options:["Evaluation","Guessing","Avoidance","Silence"],answer:0},
 {question:"Time management avoids:",options:["Missed deadlines","Productivity","Focus","Clarity"],answer:0}
-];
+
+const questionPool = [
+
+/* ===== EASY ===== */
+{question:"Leadership is best defined as:",options:["Control","Influence","Power","Authority"],answer:1,difficulty:"easy"},
+{question:"Self-assessment helps leaders:",options:["Judge others","Improve themselves","Ignore feedback","Avoid growth"],answer:1,difficulty:"easy"},
+{question:"Positive attitude leads to:",options:["Conflict","Motivation","Confusion","Stress"],answer:1,difficulty:"easy"},
+{question:"Delegation means:",options:["Doing everything","Assigning tasks","Ignoring work","Avoiding"],answer:1,difficulty:"easy"},
+{question:"Communication requires:",options:["Clarity","Silence","Control","Authority"],answer:0,difficulty:"easy"},
+
+/* ===== MEDIUM ===== */
+{question:"LMX theory focuses on:",options:["Rules","Relationships","Tasks","Deadlines"],answer:1,difficulty:"medium"},
+{question:"In-group members typically:",options:["Have trust","Ignored","Low performance","No role"],answer:0,difficulty:"medium"},
+{question:"Conflict should be:",options:["Ignored","Managed","Escalated","Avoided"],answer:1,difficulty:"medium"},
+{question:"Feedback should be:",options:["Vague","Clear","Delayed","Ignored"],answer:1,difficulty:"medium"},
+{question:"Nonverbal communication includes:",options:["Emails","Body language","Reports","Data"],answer:1,difficulty:"medium"},
+
+/* ===== HARD ===== */
+{question:"Leader-member exchange improves:",options:["Trust","Conflict","Confusion","Delay"],answer:0,difficulty:"hard"},
+{question:"Ethical leadership emphasizes:",options:["Profit","Fairness","Speed","Power"],answer:1,difficulty:"hard"},
+{question:"Decision-making requires:",options:["Guessing","Analysis","Avoidance","Silence"],answer:1,difficulty:"hard"},
+{question:"Resiliency allows leaders to:",options:["Quit","Adapt","Avoid","Ignore"],answer:1,difficulty:"hard"},
+{question:"Motivation is driven by:",options:["Fear","Needs","Control","Silence"],answer:1,difficulty:"hard"}
+
