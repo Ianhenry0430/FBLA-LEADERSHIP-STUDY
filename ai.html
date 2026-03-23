@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Coach</title>
+</head>
+<body>
+
+<h2>AI Leadership Coach</h2>
+
+<input id="question" placeholder="Ask a question">
+<button onclick="answer()">Ask</button>
+
+<p id="response"></p>
+
+<script>
+function answer() {
+  let q = document.getElementById("question").value.toLowerCase();
+
+  if(q.includes("lmx")) {
+    document.getElementById("response").innerText =
+      "LMX is a leadership theory focusing on relationships between leaders and followers.";
+  } else {
+    document.getElementById("response").innerText =
+      "Try asking about leadership concepts like communication or LMX.";
+  }
+}
+</script>
+
+</body>
+</html>
+
