@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz</title>
+</head>
+<body>
+
+<h2>Practice Quiz</h2>
+
+<p>What does LMX stand for?</p>
+
+<button onclick="checkAnswer('a')">Leader Member Exchange</button>
+<button onclick="checkAnswer('b')">Leadership Management Example</button>
+
+<p id="result"></p>
+
+<script>
+function checkAnswer(answer) {
+  if(answer === 'a') {
+    document.getElementById("result").innerText = "Correct!";
+  } else {
+    document.getElementById("result").innerText = "Try again!";
+  }
+}
+</script>
+
+</body>
+</html>
+
