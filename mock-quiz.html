@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FBLA Organizational Leadership Mock Quiz</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: Arial; text-align: left; padding: 20px; max-width: 800px; margin: auto; }
+    h1 { text-align: center; color: navy; }
+    button { margin: 5px; padding: 5px 10px; }
+    #result { margin-top: 10px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<h1>FBLA Organizational Leadership Mock Quiz</h1>
+<p id="question"></p>
+
+<div id="options"></div>
+
+<p id="result"></p>
+<button id="nextBtn" onclick="nextQuestion()" style="display:none;">Next Question</button>
+<p id="score"></p>
+
+<script>
+const questions = [
+  {
+    question: "Which of the following best defines leadership?",
+    options: ["Giving orders to followers", "Influencing others to achieve a common goal", "Controlling employees strictly", "Doing all the work yourself"],
+    answer: 1
+  },
+  {
+    question: "What is the primary purpose of self-assessment in leadership?",
+    options: ["To compare yourself to others", "To identify personal leadership strengths and weaknesses", "To rank team members", "To impress supervisors"],
+    answer: 1
+  },
+  {
+    question: "Which characteristic is essential for leaders to handle unexpected challenges?",
+    options: ["Resiliency", "Strictness", "Wealth", "Popularity"],
+    answer: 0
+  },
+  {
+    question: "Initiative in leadership refers to:",
+    options: ["Waiting for instructions", "Taking action without being asked", "Delegating all work", "Avoiding risk"],
+    answer: 1
+  },
+  {
+    question: "Leaders who maintain a positive attitude are more likely to:",
+    options: ["Lower team morale", "Inspire and motivate their followers", "Avoid taking responsibility", "Focus only on rules"],
+    answer: 1
+  },
+  {
+    question: "Which is an interpersonal role for managerial leadership?",
+    options: ["Figurehead", "Spokesperson", "Negotiator", "Monitor"],
+    answer: 0
+  },
+  {
+    question: "Which is an informational role for managerial leadership?",
+    options: ["Leader", "Disseminator", "Liaison", "Entrepreneur"],
+    answer: 1
+  },
+  {
+    question: "What is a primary function of a leader as a decision-maker?",
+    options: ["Assign tasks only", "Solve problems and allocate resources", "Watch employees", "Avoid conflicts"],
+    answer: 1
+  },
+  {
+    question: "A manager acting as a liaison is primarily:",
+    options: ["Communicating with people inside and outside the organization", "Approving paperwork", "Monitoring attendance", "Focusing on finances"],
+    answer: 0
+  },
+  {
+    question: "Which is an example of the entrepreneurial role of leadership?",
+    options: ["Hiring employees", "Developing new initiatives and improvements", "Giving presentations", "Scheduling meetings"],
+    answer: 1
+  },
+  {
+    question: "In the communication process, the sender is responsible for:",
+    options: ["Interpreting feedback", "Creating and sending the message", "Ignoring the receiver", "Documenting errors"],
+    answer: 1
+  },
+  {
+    question: "The receiver in communication:",
+    options: ["Encodes the message", "Decodes and interprets the message", "Designs new goals", "Avoids feedback"],
+    answer: 1
+  },
+  {
+    question: "Feedback in communication:",
+    options: ["Is optional", "Helps the sender know if the message was understood", "Only occurs in emails", "Is only for criticism"],
+    answer: 1
+  },
+  {
+    question: "Nonverbal communication includes all EXCEPT:",
+    options: ["Facial expressions", "Tone of voice", "Written reports", "Gestures"],
+    answer: 2
+  },
+  {
+    question: "Active listening requires:",
+    options: ["Interrupting to give your opinion", "Paying attention, asking clarifying questions, and reflecting", "Ignoring body language", "Focusing on your own response"],
+    answer: 1
+  }
+];
+
+// Quiz logic
+let currentQuestion = 0;
+let score = 0;
+
+function showQuestion() {
+  document.getElementById("result").innerText = "";
+  document.getElementById("nextBtn").style.display = "none";
+  const q = questions[currentQuestion];
+  document.getElementById("question").innerText = `${currentQuestion + 1}. ${q.question}`;
+
+  const optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML = "";
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement("button");
+    btn.innerText = opt;
+    btn.onclick = () => checkAnswer(i);
+    optionsDiv.appendChild(btn);
+  });
+}
+
+function checkAnswer(selected) {
+  const q = questions[currentQuestion];
+  if(selected === q.answer) {
+    document.getElementById("result").innerText = "✅ Correct!";
+    score++;
+  } else {
+    document.getElementById("result").innerText = `❌ Wrong! Correct answer: ${q.options[q.answer]}`;
+  }
+  document.getElementById("nextBtn").style.display = "inline";
+  Array.from(document.getElementById("options").children).forEach(btn => btn.disabled = true);
+}
+
+function nextQuestion() {
+  currentQuestion++;
+  if(currentQuestion < questions.length) {
+    showQuestion();
+  } else {
+    document.getElementById("question").innerText = "🎉 Quiz Complete!";
+    document.getElementById("options").innerHTML = "";
+    document.getElementById("result").innerText = `Your Score: ${score} / ${questions.length}`;
+    document.getElementById("nextBtn").style.display = "none";
+  }
+}
+
+// Start quiz
+showQuestion();
+</script>
+
+</body>
+</html>
