@@ -1,12 +1,17 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>FBLA Quiz</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header><h1>FBLA Quiz</h1></header>
+  <header>
+    <h1>FBLA Quiz</h1>
+    <p>Practice questions from the FBLA Organizational Leadership pool!</p>
+  </header>
+
   <main>
     <div id="quiz-container">
       <p id="question"></p>
@@ -17,9 +22,62 @@
     </div>
   </main>
 
+  <!-- Link to your question pool -->
   <script src="script-quiz.js"></script>
+
+  <script>
+  // Select up to 100 questions from the pool
+  const questions = getRandomQuestions(100);
+
+  let currentQuestion = 0;
+  let score = 0;
+
+  function showQuestion() {
+    const q = questions[currentQuestion];
+    document.getElementById("question").innerText = `${currentQuestion + 1}. ${q.question}`;
+    const optionsDiv = document.getElementById("options");
+    optionsDiv.innerHTML = "";
+    document.getElementById("result").innerText = "";
+    document.getElementById("nextBtn").style.display = "none";
+
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement("button");
+      btn.innerText = opt;
+      btn.onclick = () => checkAnswer(i);
+      optionsDiv.appendChild(btn);
+    });
+  }
+
+  function checkAnswer(selected) {
+    const q = questions[currentQuestion];
+    const result = document.getElementById("result");
+    if(selected === q.answer) {
+      result.innerText = "✅ Correct!";
+      score++;
+    } else {
+      result.innerText = `❌ Wrong! Correct answer: ${q.options[q.answer]}`;
+    }
+    document.getElementById("nextBtn").style.display = "inline";
+    Array.from(document.getElementById("options").children).forEach(btn => btn.disabled = true);
+  }
+
+  function nextQuestion() {
+    currentQuestion++;
+    if(currentQuestion < questions.length) {
+      showQuestion();
+    } else {
+      document.getElementById("question").innerText = "🎉 Quiz Complete!";
+      document.getElementById("options").innerHTML = "";
+      document.getElementById("result").innerText = `Your Score: ${score} / ${questions.length}`;
+      document.getElementById("nextBtn").style.display = "none";
+    }
+  }
+
+  // Start the quiz
+  showQuestion();
+  </script>
+
 </body>
 </html>
-
 
 
