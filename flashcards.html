@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flashcards</title>
+</head>
+<body>
+
+<h2>Flashcards</h2>
+
+<p id="card">Click to reveal</p>
+<button onclick="flip()">Flip</button>
+
+<script>
+let flipped = false;
+
+function flip() {
+  if(!flipped) {
+    document.getElementById("card").innerText = "LMX = Leader Member Exchange";
+    flipped = true;
+  } else {
+    document.getElementById("card").innerText = "Click to reveal";
+    flipped = false;
+  }
+}
+</script>
+
+</body>
+</html>
