@@ -94,6 +94,86 @@ function nextQuestion(){
 /* ==== START QUIZ ==== */
 showQuestion();
 </script>
+<script src="questions.js"></script>
+
+<script>
+function getRandomQuestions(max=100){
+  let shuffled = [...questionPool].sort(()=>0.5-Math.random());
+  return shuffled.slice(0, Math.min(max, shuffled.length));
+}
+
+const questions = getRandomQuestions(100);
+let currentQuestion = 0;
+let score = 0;
+let timer;
+let timeLeft = 30;
+
+function startTimer(){
+  clearInterval(timer);
+  timeLeft = 30;
+  document.getElementById("timer").innerText = `Time: ${timeLeft}s`;
+  timer = setInterval(()=>{
+    timeLeft--;
+    document.getElementById("timer").innerText = `Time: ${timeLeft}s`;
+    if(timeLeft <= 0){
+      clearInterval(timer);
+      document.getElementById("result").innerText =
+        `⏰ Time's up! Correct: ${questions[currentQuestion].options[questions[currentQuestion].answer]}`;
+      document.getElementById("nextBtn").style.display = "inline";
+    }
+  },1000);
+}
+
+function showQuestion(){
+  const q = questions[currentQuestion];
+  document.getElementById("question").innerText =
+    `${currentQuestion+1}. ${q.question}`;
+
+  const optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML = "";
+  document.getElementById("result").innerText = "";
+  document.getElementById("nextBtn").style.display = "none";
+
+  startTimer();
+
+  q.options.forEach((opt,i)=>{
+    const btn = document.createElement("button");
+    btn.innerText = opt;
+    btn.onclick = () => checkAnswer(i);
+    optionsDiv.appendChild(btn);
+  });
+}
+
+function checkAnswer(selected){
+  clearInterval(timer);
+  const q = questions[currentQuestion];
+  if(selected === q.answer){
+    score++;
+    document.getElementById("result").innerText = "✅ Correct!";
+  } else {
+    document.getElementById("result").innerText =
+      `❌ Wrong! Correct: ${q.options[q.answer]}`;
+  }
+  document.getElementById("nextBtn").style.display = "inline";
+}
+
+function nextQuestion(){
+  currentQuestion++;
+  if(currentQuestion < questions.length){
+    showQuestion();
+  } else {
+    document.getElementById("question").innerText = "🎉 Quiz Complete!";
+    document.getElementById("options").innerHTML = "";
+    document.getElementById("result").innerText =
+      `Score: ${score}/${questions.length}`;
+    document.getElementById("timer").innerText = "";
+  }
+}
+
+showQuestion();
+</script>
+
+
 
 </body>
 </html>
