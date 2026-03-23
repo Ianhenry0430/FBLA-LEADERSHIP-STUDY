@@ -1,26 +1,100 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FBLA Quiz</title>
+  <style>
+    body { font-family: Arial; max-width: 800px; margin: auto; padding: 20px; background: #f4f4f4; }
+    h1 { text-align: center; color: #00274d; }
+    button { margin: 5px; padding: 8px 12px; font-size: 16px; }
+    #options button { display: block; width: 100%; text-align: left; margin-bottom: 8px; }
+    #result { margin-top: 10px; font-weight: bold; }
+    #score { font-size: 18px; margin-top: 20px; }
+  </style>
+</head>
 <body>
-  <h1>FBLA Quiz</h1>
-  <p id="question"></p>
-  <div id="options"></div>
-  <p id="result"></p>
-  <button id="nextBtn" onclick="nextQuestion()" style="display:none;">Next Question</button>
-  <p id="score"></p>
 
-  <!-- Step 3: Link your external JS file here -->
-  <script src="script-quiz.js"></script>
+<h1>FBLA Organizational Leadership Quiz</h1>
+<p id="question"></p>
+<div id="options"></div>
+<p id="result"></p>
+<button id="nextBtn" onclick="nextQuestion()" style="display:none;">Next Question</button>
+<p id="score"></p>
 
-  <!-- Inline code that uses the question pool -->
-  <script>
-    const questions = getRandomQuestions(100); // pulls from script-quiz.js
-    let currentQuestion = 0;
-    let score = 0;
+<script>
+/* ==== QUESTION POOL ==== */
+const questionPool = [
+  {question:"Which of the following best defines leadership?", options:["Giving orders to followers","Influencing others to achieve a common goal","Controlling employees strictly","Doing all the work yourself"], answer:1},
+  {question:"What is the primary purpose of self-assessment in leadership?", options:["To compare yourself to others","To identify personal leadership strengths and weaknesses","To rank team members","To impress supervisors"], answer:1},
+  {question:"Which characteristic is essential for leaders to handle unexpected challenges?", options:["Resiliency","Strictness","Wealth","Popularity"], answer:0},
+  {question:"Initiative in leadership refers to:", options:["Waiting for instructions","Taking action without being asked","Delegating all work","Avoiding risk"], answer:1},
+  {question:"Leaders who maintain a positive attitude are more likely to:", options:["Lower team morale","Inspire and motivate their followers","Avoid taking responsibility","Focus only on rules"], answer:1},
+  {question:"Which is an interpersonal role for managerial leadership?", options:["Figurehead","Spokesperson","Negotiator","Monitor"], answer:0},
+  {question:"Which is an informational role for managerial leadership?", options:["Leader","Disseminator","Liaison","Entrepreneur"], answer:1},
+  {question:"What is a primary function of a leader as a decision-maker?", options:["Assign tasks only","Solve problems and allocate resources","Watch employees","Avoid conflicts"], answer:1},
+  {question:"A manager acting as a liaison is primarily:", options:["Communicating with people inside and outside the organization","Approving paperwork","Monitoring attendance","Focusing on finances"], answer:0},
+  {question:"Which is an example of the entrepreneurial role of leadership?", options:["Hiring employees","Developing new initiatives and improvements","Giving presentations","Scheduling meetings"], answer:1},
+  /* Add the rest of your 100 questions here */
+];
 
-    function showQuestion() { /* your showQuestion code */ }
-    function checkAnswer(selected) { /* your checkAnswer code */ }
-    function nextQuestion() { /* your nextQuestion code */ }
+/* ==== RANDOM PICK FUNCTION ==== */
+function getRandomQuestions(max=100){
+  let shuffled = [...questionPool].sort(()=>0.5-Math.random());
+  return shuffled.slice(0,Math.min(max,shuffled.length));
+}
 
+/* ==== QUIZ LOGIC ==== */
+const questions = getRandomQuestions(100);
+let currentQuestion = 0;
+let score = 0;
+
+function showQuestion(){
+  if(currentQuestion >= questions.length) return;
+  const q = questions[currentQuestion];
+  document.getElementById("question").innerText = `${currentQuestion+1}. ${q.question}`;
+  const optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML = "";
+  document.getElementById("result").innerText = "";
+  document.getElementById("nextBtn").style.display = "none";
+
+  q.options.forEach((opt,i)=>{
+    const btn=document.createElement("button");
+    btn.innerText=opt;
+    btn.onclick=()=>checkAnswer(i);
+    optionsDiv.appendChild(btn);
+  });
+}
+
+function checkAnswer(selected){
+  const q = questions[currentQuestion];
+  const result = document.getElementById("result");
+  if(selected === q.answer){
+    result.innerText = "✅ Correct!";
+    score++;
+  } else {
+    result.innerText = `❌ Wrong! Correct answer: ${q.options[q.answer]}`;
+  }
+  document.getElementById("nextBtn").style.display = "inline";
+  Array.from(document.getElementById("options").children).forEach(btn=>btn.disabled=true);
+}
+
+function nextQuestion(){
+  currentQuestion++;
+  if(currentQuestion < questions.length){
     showQuestion();
-  <script src="script-quiz.js"></script>
+  } else {
+    document.getElementById("question").innerText = "🎉 Quiz Complete!";
+    document.getElementById("options").innerHTML = "";
+    document.getElementById("result").innerText = `Your Score: ${score} / ${questions.length}`;
+    document.getElementById("nextBtn").style.display = "none";
+  }
+}
+
+/* ==== START QUIZ ==== */
+showQuestion();
+</script>
+
 </body>
+</html>
 
